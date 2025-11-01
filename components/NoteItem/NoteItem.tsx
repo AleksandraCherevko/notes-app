@@ -14,9 +14,9 @@ const NoteItem = ({ item }: Props) => {
 
       <div className={css.footer}>
         <span className={css.tag}>{item.tag}</span>
-        <a href={`/notes/${item.id}`} className={css.link}>
+        <Link href={`/notes/${item.id}`} className={css.link}>
           View
-        </a>
+        </Link>
       </div>
     </li>
   );
