@@ -17,7 +17,7 @@ export type NoteListResponse = {
   total: number;
 };
 
-axios.defaults.baseURL = 'https://next-v1-notes-api.goit.study';
+axios.defaults.baseURL = 'https://690bb68f6ad3beba00f5f751.mockapi.io';
 
 // Error
 
