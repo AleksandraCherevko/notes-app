@@ -16,9 +16,17 @@ export type NoteListResponse = {
   total: number;
 };
 
-axios.defaults.baseURL = 'https://690c5c0b6ad3beba00f84120.mockapi.io/notes';
+axios.defaults.baseURL = 'https://690c6c7da6d92d83e84da832.mockapi.io/notes';
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
 export const getNotes = async () => {
+  await delay(2000);
   const res = await axios.get<Note[]>('/notes');
   return { notes: res.data, total: res.data.length };
+};
+
+export const getSingleNote = async (id: string) => {
+  const res = await axios.get<Note>(`/notes/${id}`);
+  return res.data;
 };
