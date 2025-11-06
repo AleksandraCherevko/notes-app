@@ -16,7 +16,7 @@ export type NoteListResponse = {
   total: number;
 };
 
-axios.defaults.baseURL = 'https://690c6c7da6d92d83e84da832.mockapi.io/notes';
+axios.defaults.baseURL = 'https://690cfa10a6d92d83e85021ff.mockapi.io/notes';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
@@ -43,6 +43,6 @@ export type Category = {
 };
 
 export const getCategories = async () => {
-  const res = await axios<Category[]>('/categories');
+  const res = await axios<Category[]>('/category');
   return res.data;
 };
