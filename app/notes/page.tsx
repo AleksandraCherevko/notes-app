@@ -1,27 +1,28 @@
-// app/notes/[id]/page.tsx
+// app/notes/page.tsx
 
-import { getSingleNote } from '@/lib/api';
+'use client';
 
-type Props = {
-  params: Promise<{ id: string }>;
-};
+import { useState } from 'react';
+import NoteList from '@/components/NoteList/NoteList';
+import { getNotes, Note } from '@/lib/api';
 
-const NoteDetails = async ({ params }: Props) => {
-  const { id } = await params;
-  const note = await getSingleNote(id);
+const Notes = () => {
+  const [notes, setNotes] = useState<Note[]>([]);
 
-  const formattedDate = note.updatedAt
-    ? `Updated at: ${note.updatedAt}`
-    : `Created at: ${note.createdAt}`;
+  const handleClick = async () => {
+    const response = await getNotes();
+    if (response?.notes) {
+      setNotes(response.notes);
+    }
+  };
 
   return (
-    <div>
-      <h2>{note.title}</h2>
-      <p>{note.content}</p>
-      <button>Edit</button>
-      <p>{formattedDate}</p>
-    </div>
+    <section>
+      <h1>Notes List</h1>
+      <button onClick={handleClick}>Get my notes</button>
+      {notes.length > 0 && <NoteList notes={notes} />}
+    </section>
   );
 };
 
-export default NoteDetails;
+export default Notes;

@@ -9,7 +9,6 @@ export type Note = {
   categoryId: string;
   userId: string;
   createdAt: string;
-  updatedAt: string;
 };
 
 export type NoteListResponse = {
@@ -17,19 +16,9 @@ export type NoteListResponse = {
   total: number;
 };
 
-axios.defaults.baseURL = 'https://690bb68f6ad3beba00f5f751.mockapi.io';
-
-// Error
-
-const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+axios.defaults.baseURL = 'https://690c5c0b6ad3beba00f84120.mockapi.io/notes';
 
 export const getNotes = async () => {
-  await delay(2000);
-  const res = await axios.get<NoteListResponse>('/notes');
-  return res.data;
-};
-
-export const getSingleNote = async (id: string) => {
-  const res = await axios.get<Note>(`/notes/${id}`);
-  return res.data;
+  const res = await axios.get<Note[]>('/notes');
+  return { notes: res.data, total: res.data.length };
 };
