@@ -20,13 +20,29 @@ axios.defaults.baseURL = 'https://690c6c7da6d92d83e84da832.mockapi.io/notes';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
-export const getNotes = async () => {
-  await delay(2000);
-  const res = await axios.get<Note[]>('/notes');
-  return { notes: res.data, total: res.data.length };
+export const getNotes = async (categoryId?: string) => {
+  const res = await axios.get<NoteListResponse>('/notes', {
+    params: { categoryId },
+  });
+  return res.data;
 };
 
 export const getSingleNote = async (id: string) => {
   const res = await axios.get<Note>(`/notes/${id}`);
+  return res.data;
+};
+
+// FILTER
+
+export type Category = {
+  id: string;
+  name: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+};
+
+export const getCategories = async () => {
+  const res = await axios<Category[]>('/categories');
   return res.data;
 };
