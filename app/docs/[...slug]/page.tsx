@@ -1,16 +1,16 @@
 // app/docs/[...slug]/page.tsx
 
 type Props = {
-  params: Promise<{ slug: string[] }>;
+  params: { slug?: string[] };
 };
 
-export default async function DocsPage({ params }: Props) {
-  const { slug } = await params;
+export default function DocsPage({ params }: Props) {
+  const { slug } = params;
 
   return (
     <div>
-            <h1>Docs page</h1>     {' '}
-      <p>Current path: {params.slug?.join(' / ') || 'home'}</p>   {' '}
+      <h1>Docs page</h1>
+      <p>Current path: {slug?.join(' / ') || 'home'}</p>
     </div>
   );
 }

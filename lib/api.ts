@@ -16,7 +16,7 @@ export type NoteListResponse = {
   total: number;
 };
 
-axios.defaults.baseURL = 'https://690cfa10a6d92d83e85021ff.mockapi.io/notes';
+axios.defaults.baseURL = 'https://690cff46a6d92d83e850303b.mockapi.io/notes';
 
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
 
